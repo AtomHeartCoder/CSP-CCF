@@ -13,28 +13,26 @@ int _not(list<int *> l)
 
 int _and(list<int *> l)
 {
+    int res = 0;
     for (auto it = l.begin(); it != l.end(); it++) {
         if (**it == -1) {
             return -1;
         }
-        if (**it == 0) {
-            return 0;
-        }
+        res &= **it;
     }
-    return 1;
+    return res;
 }
 
 int _or(list<int *> l)
 {
+    int res = 0;
     for (auto it = l.begin(); it != l.end(); it++) {
         if (**it == -1) {
             return -1;
         }
-        if (**it == 1) {
-            return 1;
-        }
+        res |= **it;
     }
-    return 0;
+    return res;
 }
 
 int _xor(list<int *> l)
@@ -52,15 +50,13 @@ int _xor(list<int *> l)
 int nand(list<int *> l)
 {
     int res = _and(l);
-    if (res == -1) return -1;
-    return !res;
+    return res == -1 ? -1 : !res;
 }
 
 int nor(list<int *> l)
 {
     int res = _or(l);
-    if (res == -1) return -1;
-    return !res;
+    return res == -1 ? -1 : !res;
 }
 
 struct gate {
